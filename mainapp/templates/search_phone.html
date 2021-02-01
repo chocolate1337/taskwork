@@ -1,0 +1,50 @@
+{% extends '_base.html' %}
+
+{% block title %}
+    Результат поиска
+{% endblock %}
+
+{% block content %}
+    {% if search_result %}
+        <h1>Результат поиска</h1>
+        <table class="table table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Телефон</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Отчество</th>
+                <th scope="col">Город</th>
+                <th scope="col">Улица</th>
+                <th scope="col">Дом</th>
+                <th scope="col">Квартира</th>
+                <th scope="col">Whatsupp</th>
+                <th scope="col">Telegram</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for phone in search_result %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ phone.phone }}</td>
+                    <td>{{ phone.lastname }}</td>
+                    <td>{{ phone.firstname }}</td>
+                    <td>{{ phone.patronymic }}</td>
+                    <td>{{ phone.city }}</td>
+                    <td>{{ phone.street }}</td>
+                    <td>{{ phone.house }}</td>
+                    <td>{{ phone.apartment }}</td>
+                    <td>{{ phone.whatsupp }}</td>
+                    <td>{{ phone.telegram }}</td>
+                    <td><a class="btn btn-primary" href="{% url 'edit_phone' phone.pk %}" role="button">Изменить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h4>Ничего не найдено...</h4>
+    {% endif %}
+{% endblock %}

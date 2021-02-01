@@ -1,0 +1,50 @@
+{% extends '_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Удаление
+{% endblock %}
+
+{% block content %}
+    <h1>Удаление записи</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>Вы уверены что хотите удалить запись?</p>
+        <table class="table table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Телефон</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Отчество</th>
+                <th scope="col">Город</th>
+                <th scope="col">Улица</th>
+                <th scope="col">Дом</th>
+                <th scope="col">Квартира</th>
+                <th scope="col">Whatsupp</th>
+                <th scope="col">Telegramm</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ object.phone }}</td>
+                <td>{{ object.lastname }}</td>
+                <td>{{ object.firstname }}</td>
+                <td>{{ object.patronymic }}</td>
+                <td>{{ object.city }}</td>
+                <td>{{ object.street }}</td>
+                <td>{{ object.house }}</td>
+                <td>{{ object.whatsupp }}</td>
+                <td>{{ object.telegram }}</td>
+                {% if object.apartment %}
+                    <td>{{ object.apartment }}</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+            </tr>
+            </tbody>
+        </table>
+        <input type="submit" class="btn btn-danger" value="Удалить">
+    </form>
+{% endblock %}

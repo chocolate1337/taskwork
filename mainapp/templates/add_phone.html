@@ -1,0 +1,16 @@
+{% extends '_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Добавление
+{% endblock %}
+
+{% block content %}
+    <h1>Добавление записи</h1>
+    <form action="{% url 'add_phone' %}" method="post" id="add_phone">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary btn-block">Добавить</button>
+    </form>
+{% endblock %}
